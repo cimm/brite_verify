@@ -1,6 +1,12 @@
 # BriteVerify
 
-TODO: Write a gem description
+[BriteVerify](http://www.briteverify.com/) is a paying e-mail validation service. You pass it an e-mail address and it tells you if the e-mail address is real or not. They offer a typical REST like API. This gem wraps the API in a more Ruby friendly syntax.
+
+This gem is no way endorsed or certified by BriteVerify. I extracted the code from a project where we are using the BriteVerify e-mail validation service.
+
+## Shortcomings
+
+This gem does not cover all of BriteVerify's services. It only does e-mail validation and does not help you with any of BriteVerify's other services as I did not have a need for any of those so far. Feel free to contribute if you can help, it can only help the Ruby community.
 
 ## Installation
 
@@ -18,12 +24,15 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Minimum viable example:
+
+    email = BriteVerify::Email.new("john@example.com")
+    email.validate # makes the call
+    email.status
+     => "valid"
+     
+A more detailed description of the API can be found in the [BriteVerify e-mail documentation](https://github.com/BriteVerify/BriteCode/blob/master/email.md).
 
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Something missing? Found a bug? Horrified by the code? Open a github issue, write a failing test or add some code using pull requests. Your help is greatly appreciated!
