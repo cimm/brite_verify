@@ -1,5 +1,9 @@
 require "brite_verify/version"
+require "brite_verify/email_fetcher"
+require "brite_verify/email_response"
+require "brite_verify/email"
 
 module BriteVerify
-  # Your code goes here...
+  HOST = "bpi.briteverify.com"
+  KEY  = ""
 end
