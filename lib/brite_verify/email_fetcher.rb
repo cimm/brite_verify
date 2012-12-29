@@ -10,13 +10,13 @@ module BriteVerify
       @key = key
     end
 
-    def fetch_raw_email
-      email_response = fetch(email_address)
+    def fetch_raw_email(address)
+      email_response = fetch(address)
       email_response.raw_email
     end
 
-    def fetch(email_address)
-      uri              = verification_uri
+    def fetch(address)
+      uri              = verification_uri(address)
       http             = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl     = true
       http.verify_mode = OpenSSL::SSL::VERIFY_PEER
@@ -25,8 +25,8 @@ module BriteVerify
       EmailResponse.new(response)
     end
 
-    def verification_uri(email_address)
-      query = URI.encode_www_form(address: email_address, apikey: @key)
+    def verification_uri(address)
+      query = URI.encode_www_form(address: address, apikey: @key)
       URI::HTTPS.build({host: HOST, path: EMAIL_PATH, query: query})
     end
   end

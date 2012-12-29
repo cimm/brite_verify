@@ -6,12 +6,12 @@ module BriteVerify
       @address = address
     end
 
-    def validate
+    def verify
       email_fetcher = EmailFetcher.new(KEY)
-      @raw_email    = email_fetcher.fetch_raw_email(email_address)
+      @raw_email    = email_fetcher.fetch_raw_email(@address)
     end
 
-    def validated_address
+    def verified_address
       @raw_email["address"]
     end
 

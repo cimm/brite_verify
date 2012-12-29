@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = BriteVerify::VERSION
   gem.authors       = ["Simon Schoeters"]
   gem.email         = ["hamfilter@gmail.com"]
-  gem.description   = %q{Ruby interface for BriteVerify's paying e-mail validation service.}
-  gem.summary       = %q{BriteVerify is a paying e-mail validation service. You pass it an e-mail address and it tells you if the e-mail address is real or not. They offer a typical REST like API. This gem wraps the API in a more Ruby friendly syntax.}
+  gem.description   = %q{Ruby interface for BriteVerify's paying e-mail verification service.}
+  gem.summary       = %q{BriteVerify is a paying e-mail verification service. You pass it an e-mail address and it tells you if the e-mail address is real or not. They offer a typical REST like API. This gem wraps the API in a more Ruby friendly syntax.}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
