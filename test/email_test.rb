@@ -16,6 +16,7 @@ module BriteVerify
     end
 
     it "requires a key" do
+      ENV['BRITEVERIFY_API_KEY'] = nil
       lambda { Email.new(ADDRESS) }.must_raise(ArgumentError)
     end
 
