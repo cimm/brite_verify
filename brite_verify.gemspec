@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["hamfilter@gmail.com"]
   gem.description   = %q{Ruby interface for BriteVerify's paying e-mail verification service.}
   gem.summary       = %q{BriteVerify is a paying e-mail verification service. You pass it an e-mail address and it tells you if the e-mail address is real or not. They offer a typical REST like API. This gem wraps the API in a more Ruby friendly syntax.}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/cimm/brite_verify"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

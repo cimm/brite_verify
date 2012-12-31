@@ -52,4 +52,4 @@ A more detailed description of the API can be found in the [BriteVerify e-mail d
 
 ## Contributing
 
-Something missing? Found a bug? Horrified by the code? Open a github issue, write a failing test or add some code using pull requests. Your help is greatly appreciated!
+Something missing? Found a bug? Horrified by the code? Open a [github issue](https://github.com/cimm/brite_verify/issues), write a failing test or add some code using pull requests. Your help is greatly appreciated!
