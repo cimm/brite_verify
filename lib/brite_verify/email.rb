@@ -6,6 +6,10 @@ module BriteVerify
       @key     = key
     end
 
+    def verified?
+      raw_email.keys.any?
+    end
+
     def address
       raw_email["address"]
     end

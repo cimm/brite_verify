@@ -44,9 +44,15 @@ def stub_error_email_verification_request(address, key, code)
   status           = []
   verification_url = email_verification_url(address, key)
   case code
-  when 500 then status = [500, "Internal Server Error"]
+  when 401
+    stub_request(:get, verification_url).to_return(:status => [401, "Unauthorized"])
+  when 500
+    stub_request(:get, verification_url).to_return(:status => [500, "Internal Server Error"])
+  when :timeout
+    stub_request(:get, verification_url).to_timeout
+  else
+    raise "Unknown response code: #{code}"
   end
-  stub_request(:get, verification_url).to_return(:status => status)
 end
 
 def email_verification_url(address, key)

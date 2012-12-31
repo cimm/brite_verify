@@ -29,6 +29,48 @@ module BriteVerify
       ENV['BRITEVERIFY_API_KEY'] = nil
     end
 
+    describe :verified? do
+      describe "when the response was successful" do
+        it "returns true" do
+          email = Email.new(ADDRESS, KEY)
+          email.verified?.must_equal(true)
+        end
+      end
+
+      describe "when the response was not successful" do
+        before do
+          stub_error_email_verification_request(ADDRESS, KEY, 500)
+        end
+
+        it "returns false" do
+          email = Email.new(ADDRESS, KEY)
+          email.verified?.must_equal(false)
+        end
+      end
+
+      describe "when the response timed out" do
+        before do
+          stub_error_email_verification_request(ADDRESS, KEY, :timeout)
+        end
+
+        it "returns false" do
+          email = Email.new(ADDRESS, KEY)
+          email.verified?.must_equal(false)
+        end
+      end
+
+      describe "when the response is unauthorized" do
+        before do
+          stub_error_email_verification_request(ADDRESS, KEY, 401)
+        end
+
+        it "returns false" do
+          email = Email.new(ADDRESS, KEY)
+          email.verified?.must_equal(false)
+        end
+      end
+    end
+
     describe :address do
       describe "when the response was successful" do
         it "returns the verified address returned from BriteVerify" do

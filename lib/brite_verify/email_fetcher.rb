@@ -13,6 +13,8 @@ module BriteVerify
     def fetch_raw_email(address)
       email_response = fetch_email(address)
       email_response.raw_email
+    rescue Timeout::Error => e
+      {}
     end
 
     def fetch_email(address)

@@ -27,6 +27,8 @@ Or install it yourself as:
 Minimum viable example:
 
     email = BriteVerify::Email.new("john@example.com", "1298c367-ca34-6e11-3ab5-56027f1d1ec7")
+    email.verified?
+     => true
     email.status
      => :invalid
     email.account
