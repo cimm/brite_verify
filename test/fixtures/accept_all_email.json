@@ -1,0 +1,8 @@
+{
+  "address":"john.doe@example.com",
+  "account":"john.doe",
+  "domain":"example.com",
+  "status":"accept_all",
+  "connected":"true",
+  "duration":0.104516605
+}

@@ -26,11 +26,28 @@ Or install it yourself as:
 
 Minimum viable example:
 
-    email = BriteVerify::Email.new("john@example.com")
-    email.verify # makes the call
+    email = BriteVerify::Email.new("john@example.com", "1298c367-ca34-6e11-3ab5-56027f1d1ec7")
     email.status
-     => "valid"
-     
+     => :invalid
+    email.account
+     => "john"
+    email.domain
+     => "example.com"
+    email.connected
+     => nil
+    email.disposable
+     => false 
+    email.role_address
+     => false 
+    email.duration
+     => 0.039381279
+    email.error_code
+     => "email_domain_invalid"
+    email.error
+     => "Email domain invalid"
+
+You can skip the API key parameter and specify the `ENV['BRITEVERIFY_API_KEY']` environment variable for convenience.
+
 A more detailed description of the API can be found in the [BriteVerify e-mail documentation](https://github.com/BriteVerify/BriteCode/blob/master/email.md).
 
 ## Contributing

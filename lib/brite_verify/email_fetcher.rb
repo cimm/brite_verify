@@ -1,21 +1,21 @@
-require "net/https"
-require "openssl"
-require "uri"
+require 'net/https'
+require 'openssl'
+require 'uri'
 
 module BriteVerify
   class EmailFetcher
-    EMAIL_PATH = "/email.json"
+    EMAIL_PATH = "/emails.json"
 
     def initialize(key)
       @key = key
     end
 
     def fetch_raw_email(address)
-      email_response = fetch(address)
+      email_response = fetch_email(address)
       email_response.raw_email
     end
 
-    def fetch(address)
+    def fetch_email(address)
       uri              = verification_uri(address)
       http             = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl     = true

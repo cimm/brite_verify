@@ -1,0 +1,10 @@
+{
+  "address":"john.doe@example.com",
+  "account":"john.doe",
+  "domain":"example.com",
+  "status":"invalid",
+  "error_code":"email_domain_invalid",
+  "error":"Email domain invalid",
+  "connected":"true",
+  "duration":0.104516605
+}

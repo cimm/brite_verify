@@ -1,46 +1,56 @@
 module BriteVerify
   class Email
-    attr_reader :address
-
-    def initialize(address)
+    def initialize(address, key = ENV['BRITEVERIFY_API_KEY'])
+      raise ArgumentError, "Missing BriteVerify API key" if key.nil? || key.strip.empty?
       @address = address
+      @key     = key
     end
 
-    def verify
-      email_fetcher = EmailFetcher.new(KEY)
-      @raw_email    = email_fetcher.fetch_raw_email(@address)
-    end
-
-    def verified_address
-      @raw_email["address"]
+    def address
+      raw_email["address"]
     end
 
     def account
-      @raw_email["account"]
+      raw_email["account"]
     end
 
     def domain
-      @raw_email["domain"]
+      raw_email["domain"]
     end
 
     def status
-      @raw_email["status"]
+      raw_email["status"].to_sym if raw_email["status"]
     end
 
-    def connected?
-      @raw_email["connected"].downcase == "true"
+    def connected
+      raw_email["connected"].downcase == "true" if raw_email["connected"]
     end
 
     def duration
-      @raw_email["duration"]
+      raw_email["duration"]
     end
 
-    def disposable?
-      @raw_email["disposable"]
+    def disposable
+      raw_email["disposable"]
     end
 
-    def role_address?
-      @raw_email["role_address"]
+    def role_address
+      raw_email["role_address"]
+    end
+
+    def error_code
+      raw_email["error_code"]
+    end
+
+    def error
+      raw_email["error"]
+    end
+
+    private
+
+    def raw_email
+      email_fetcher = EmailFetcher.new(@key)
+      @raw_email ||= email_fetcher.fetch_raw_email(@address)
     end
   end
 end
