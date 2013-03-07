@@ -10,6 +10,8 @@ This gem does not cover all of BriteVerify's services. It only does e-mail verif
 
 ## Installation
 
+The BriteVerify gem is Ruby 1.9.x and 2.0.x compatible.
+
 Add this line to your application's Gemfile:
 
     gem 'brite_verify'
