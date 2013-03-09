@@ -17,6 +17,9 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test)/})
   gem.require_paths = ["lib"]
 
+  gem.signing_key   = 'gem-private_key.pem'
+  gem.cert_chain    = ['gem-public_cert.pem']
+
   gem.add_development_dependency 'webmock', '~> 1.9.0'
   gem.add_development_dependency 'rake',    '~> 10.0.3'
 end
