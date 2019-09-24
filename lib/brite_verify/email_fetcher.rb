@@ -18,12 +18,14 @@ module BriteVerify
     end
 
     def fetch_email(address)
-      uri              = verification_uri(address)
-      http             = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl     = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-      request          = Net::HTTP::Get.new(uri.request_uri)
-      response         = http.request(request)
+      uri                   = verification_uri(address)
+      http                  = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl          = true
+      http.read_timeout     = ENV.fetch("BRITE_VERIFY_READ_TIMEOUT", 60).to_i
+      http.continue_timeout = ENV.fetch("BRITE_VERIFY_CONTINUE_TIMEOUT", 60).to_i
+      http.verify_mode      = OpenSSL::SSL::VERIFY_PEER
+      request               = Net::HTTP::Get.new(uri.request_uri)
+      response              = http.request(request)
       EmailResponse.new(response)
     end
 
