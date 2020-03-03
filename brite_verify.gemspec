@@ -20,6 +20,6 @@ Gem::Specification.new do |gem|
   gem.signing_key   = 'gem-private_key.pem'
   gem.cert_chain    = ['gem-public_cert.pem']
 
-  gem.add_development_dependency 'webmock', '~> 1.9.0'
-  gem.add_development_dependency 'rake',    '~> 10.0.3'
+  gem.add_development_dependency 'webmock', '~> 3.8.2'
+  gem.add_development_dependency 'rake',    '~> 13.0.1'
 end
