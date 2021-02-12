@@ -21,6 +21,8 @@ module BriteVerify
       uri              = verification_uri(address)
       http             = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl     = true
+      http.open_timeout = BriteVerify.open_timeout
+      http.read_timeout = BriteVerify.read_timeout
       http.verify_mode = OpenSSL::SSL::VERIFY_PEER
       request          = Net::HTTP::Get.new(uri.request_uri)
       response         = http.request(request)
