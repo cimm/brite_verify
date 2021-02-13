@@ -22,7 +22,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install ced -P LowSecurity
+    $ gem install brite_verify
 
 ## Usage
 
