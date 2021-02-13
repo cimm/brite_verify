@@ -12,21 +12,24 @@ module BriteVerify
 
     it "accepts a key" do
       email = Email.new(ADDRESS, KEY)
-      email.wont_be_nil
+      _(email).wont_be_nil
     end
 
     it "requires a key" do
       ENV['BRITEVERIFY_API_KEY'] = nil
-      lambda { Email.new(ADDRESS) }.must_raise(ArgumentError)
+      email = lambda { Email.new(ADDRESS) }
+      _(email).must_raise(ArgumentError)
     end
 
     it "does not accept an empty key" do
-      lambda { Email.new(ADDRESS, "") }.must_raise(ArgumentError)
+      email = lambda { Email.new(ADDRESS, "") }
+      _(email).must_raise(ArgumentError)
     end
 
     it "uses the environment variable the key wasn't given" do
       ENV['BRITEVERIFY_API_KEY'] = "456-def-456-def"
-      lambda { Email.new(ADDRESS) }.must_be_silent
+      email = lambda { Email.new(ADDRESS) }
+      _(email).must_be_silent
       ENV['BRITEVERIFY_API_KEY'] = nil
     end
 
@@ -34,7 +37,7 @@ module BriteVerify
       describe "when the response was successful" do
         it "returns true" do
           email = Email.new(ADDRESS, KEY)
-          email.verified?.must_equal(true)
+          _(email.verified?).must_equal(true)
         end
       end
 
@@ -45,7 +48,7 @@ module BriteVerify
 
         it "returns false" do
           email = Email.new(ADDRESS, KEY)
-          email.verified?.must_equal(false)
+          _(email.verified?).must_equal(false)
         end
       end
 
@@ -56,7 +59,7 @@ module BriteVerify
 
         it "returns false" do
           email = Email.new(ADDRESS, KEY)
-          email.verified?.must_equal(false)
+          _(email.verified?).must_equal(false)
         end
       end
 
@@ -67,7 +70,7 @@ module BriteVerify
 
         it "returns false" do
           email = Email.new(ADDRESS, KEY)
-          email.verified?.must_equal(false)
+          _(email.verified?).must_equal(false)
         end
       end
     end
@@ -76,7 +79,7 @@ module BriteVerify
       describe "when the response was successful" do
         it "returns the verified address returned from BriteVerify" do
           email = Email.new(ADDRESS, KEY)
-          email.address.must_equal("john.doe@example.com")
+          _(email.address).must_equal("john.doe@example.com")
         end
       end
 
@@ -87,7 +90,7 @@ module BriteVerify
 
         it "returns nil" do
           email = Email.new(ADDRESS, KEY)
-          email.address.must_be_nil
+          _(email.address).must_be_nil
         end
       end
     end
@@ -96,7 +99,7 @@ module BriteVerify
       describe "when the response was successful" do
         it "returns the account returned from BriteVerify" do
           email = Email.new(ADDRESS, KEY)
-          email.account.must_equal("john.doe")
+          _(email.account).must_equal("john.doe")
         end
       end
 
@@ -107,7 +110,7 @@ module BriteVerify
 
         it "returns nil" do
           email = Email.new(ADDRESS, KEY)
-          email.account.must_be_nil
+          _(email.account).must_be_nil
         end
       end
     end
@@ -116,7 +119,7 @@ module BriteVerify
       describe "when the response was successful" do
         it "returns the domain returned from BriteVerify" do
           email = Email.new(ADDRESS, KEY)
-          email.domain.must_equal("example.com")
+          _(email.domain).must_equal("example.com")
         end
       end
 
@@ -127,7 +130,7 @@ module BriteVerify
 
         it "returns nil" do
           email = Email.new(ADDRESS, KEY)
-          email.domain.must_be_nil
+          _(email.domain).must_be_nil
         end
       end
     end
@@ -137,7 +140,7 @@ module BriteVerify
         describe "when the address is valid" do
           it "returns the valid status" do
             email = Email.new(ADDRESS, KEY)
-            email.status.must_equal(:valid)
+            _(email.status).must_equal(:valid)
           end
         end
 
@@ -148,7 +151,7 @@ module BriteVerify
 
           it "returns the invalid status" do
             email = Email.new(ADDRESS, KEY)
-            email.status.must_equal(:invalid)
+            _(email.status).must_equal(:invalid)
           end
         end
 
@@ -159,7 +162,7 @@ module BriteVerify
 
           it "returns the unknown status" do
             email = Email.new(ADDRESS, KEY)
-            email.status.must_equal(:unknown)
+            _(email.status).must_equal(:unknown)
           end
         end
 
@@ -170,7 +173,7 @@ module BriteVerify
 
           it "returns the unknown status" do
             email = Email.new(ADDRESS, KEY)
-            email.status.must_equal(:accept_all)
+            _(email.status).must_equal(:accept_all)
           end
         end
       end
@@ -182,7 +185,7 @@ module BriteVerify
 
         it "returns nil" do
           email = Email.new(ADDRESS, KEY)
-          email.status.must_be_nil
+          _(email.status).must_be_nil
         end
       end
     end
@@ -196,14 +199,14 @@ module BriteVerify
 
           it "returns true" do
             email = Email.new(ADDRESS, KEY)
-            email.connected.must_equal(true)
+            _(email.connected).must_equal(true)
           end
         end
 
         describe "when it is not known if the address is connected" do
           it "returns nil" do
             email = Email.new(ADDRESS, KEY)
-            email.connected.must_be_nil
+            _(email.connected).must_be_nil
           end
         end
       end
@@ -215,7 +218,7 @@ module BriteVerify
 
         it "returns nil" do
           email = Email.new(ADDRESS, KEY)
-          email.connected.must_be_nil
+          _(email.connected).must_be_nil
         end
       end
     end
@@ -224,7 +227,7 @@ module BriteVerify
       describe "when the response was successful" do
         it "returns the time it took BriteVerify to verify the address" do
           email = Email.new(ADDRESS, KEY)
-          email.duration.must_equal(0.104516605)
+          _(email.duration).must_equal(0.104516605)
         end
       end
 
@@ -235,7 +238,7 @@ module BriteVerify
 
         it "returns nil" do
           email = Email.new(ADDRESS, KEY)
-          email.duration.must_be_nil
+          _(email.duration).must_be_nil
         end
       end
     end
@@ -249,14 +252,14 @@ module BriteVerify
 
           it "returns true" do
             email = Email.new(ADDRESS, KEY)
-            email.disposable.must_equal(true)
+            _(email.disposable).must_equal(true)
           end
         end
 
         describe "when it is not known if the address is disposable" do
           it "returns nil" do
             email = Email.new(ADDRESS, KEY)
-            email.disposable.must_be_nil
+            _(email.disposable).must_be_nil
           end
         end
       end
@@ -268,7 +271,7 @@ module BriteVerify
 
         it "returns nil" do
           email = Email.new(ADDRESS, KEY)
-          email.disposable.must_be_nil
+          _(email.disposable).must_be_nil
         end
       end
     end
@@ -282,14 +285,14 @@ module BriteVerify
 
           it "returns true" do
             email = Email.new(ADDRESS, KEY)
-            email.role_address.must_equal(true)
+            _(email.role_address).must_equal(true)
           end
         end
 
         describe "when it is not known if the address is a role address" do
           it "returns nil" do
             email = Email.new(ADDRESS, KEY)
-            email.role_address.must_be_nil
+            _(email.role_address).must_be_nil
           end
         end
       end
@@ -301,7 +304,7 @@ module BriteVerify
 
         it "returns nil" do
           email = Email.new(ADDRESS, KEY)
-          email.role_address.must_be_nil
+          _(email.role_address).must_be_nil
         end
       end
     end
@@ -311,7 +314,7 @@ module BriteVerify
         describe "when the address is valid" do
           it "has no error code" do
             email = Email.new(ADDRESS, KEY)
-            email.error_code.must_be_nil
+            _(email.error_code).must_be_nil
           end
         end
 
@@ -322,7 +325,7 @@ module BriteVerify
 
           it "has an error code" do
             email = Email.new(ADDRESS, KEY)
-            email.error_code.must_equal("email_domain_invalid")
+            _(email.error_code).must_equal("email_domain_invalid")
           end
         end
       end
@@ -334,7 +337,7 @@ module BriteVerify
 
         it "returns nil" do
           email = Email.new(ADDRESS, KEY)
-          email.error_code.must_be_nil
+          _(email.error_code).must_be_nil
         end
       end
     end
@@ -344,7 +347,7 @@ module BriteVerify
         describe "when the address is valid" do
           it "has no error" do
             email = Email.new(ADDRESS, KEY)
-            email.error.must_be_nil
+            _(email.error).must_be_nil
           end
         end
 
@@ -355,7 +358,7 @@ module BriteVerify
 
           it "has a more detailed error" do
             email = Email.new(ADDRESS, KEY)
-            email.error.must_equal("Email domain invalid")
+            _(email.error).must_equal("Email domain invalid")
           end
         end
       end
@@ -367,7 +370,7 @@ module BriteVerify
 
         it "returns nil" do
           email = Email.new(ADDRESS, KEY)
-          email.error.must_be_nil
+          _(email.error).must_be_nil
         end
       end
     end

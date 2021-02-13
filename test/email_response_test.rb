@@ -11,7 +11,7 @@ module BriteVerify
       describe "when it succeeded" do
         it "returns true" do
           email_response = EmailResponse.new(@response)
-          email_response.successful?.must_equal(true)
+          _(email_response.successful?).must_equal(true)
         end
       end
 
@@ -22,7 +22,7 @@ module BriteVerify
 
         it "returns false" do
           email_response = EmailResponse.new(@response)
-          email_response.successful?.must_equal(false)
+          _(email_response.successful?).must_equal(false)
         end
       end
     end
@@ -38,7 +38,7 @@ module BriteVerify
         it "returns the raw email" do
           email_response          = EmailResponse.new(@response)
           parsed_valid_email_body = JSON.parse(valid_email_body)
-          email_response.raw_email.must_equal(parsed_valid_email_body)
+          _(email_response.raw_email).must_equal(parsed_valid_email_body)
         end
       end
 
@@ -49,7 +49,7 @@ module BriteVerify
 
         it "returns an empty raw email" do
           email_response = EmailResponse.new(@response)
-          email_response.raw_email.must_equal({})
+          _(email_response.raw_email).must_equal({})
         end
       end
     end
