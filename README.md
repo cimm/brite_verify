@@ -6,13 +6,13 @@ This gem is in no way endorsed or certified by BriteVerify. I extracted the code
 
 ## Shortcomings
 
-This gem does not cover all of BriteVerify's services. It only does e-mail verification and does not help you with any of BriteVerify's other services as I did not need any of those so far. Feel free to contribute if you can help, it can only help the Ruby community.
+This gem does not cover all of BriteVerify’s services. It only does e-mail verification and does not help you with any of BriteVerify’s other services as I did not need any of those so far. Feel free to contribute if you can help, it can only help the Ruby community.
 
 ## Installation
 
-The BriteVerify gem is Ruby 1.9.x and 2.0.x compatible.
+The BriteVerify gem is Ruby 2.x compatible.
 
-Add this line to your application's Gemfile:
+Add this line to your application’s Gemfile:
 
     gem 'brite_verify'
 
