@@ -1,5 +1,3 @@
-require 'minitest/spec'
-require 'minitest/mock'
 require 'minitest/autorun'
 require 'webmock/minitest'
 require 'brite_verify'
@@ -41,7 +39,6 @@ def stub_email_verification_request(address, key, body)
 end
 
 def stub_error_email_verification_request(address, key, code)
-  status           = []
   verification_url = email_verification_url(address, key)
   case code
   when 401

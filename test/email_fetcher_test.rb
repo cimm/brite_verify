@@ -11,18 +11,19 @@ module BriteVerify
 
     it "accepts a key" do
       email_fetcher = EmailFetcher.new(KEY)
-      email_fetcher.wont_be_nil
+      _(email_fetcher).wont_be_nil
     end
 
     it "requires a key" do
-      lambda { EmailFetcher.new }.must_raise(ArgumentError)
+      fetcher = lambda { EmailFetcher.new }
+      _(fetcher).must_raise(ArgumentError)
     end
 
     describe :fetch_raw_email do
       it "returns the raw e-mail" do
         email_fetcher           = EmailFetcher.new(KEY)
         parsed_valid_email_body = JSON.parse(valid_email_body)
-        email_fetcher.fetch_raw_email(ADDRESS).must_equal(parsed_valid_email_body)
+        _(email_fetcher.fetch_raw_email(ADDRESS)).must_equal(parsed_valid_email_body)
       end
     end
 
@@ -35,7 +36,7 @@ module BriteVerify
 
       it "returns an e-mail response" do
         email_fetcher = EmailFetcher.new(KEY)
-        email_fetcher.fetch_email(ADDRESS).must_be_instance_of(EmailResponse)
+        _(email_fetcher.fetch_email(ADDRESS)).must_be_instance_of(EmailResponse)
       end
     end
 
@@ -43,7 +44,7 @@ module BriteVerify
       it "returns the verification URI" do
         email_fetcher = EmailFetcher.new(KEY)
         uri = email_fetcher.verification_uri(ADDRESS)
-        uri.to_s.must_equal("https://bpi.briteverify.com/emails.json?address=john.doe%40example.com&apikey=123-abc-123-abc")
+        _(uri.to_s).must_equal("https://bpi.briteverify.com/emails.json?address=john.doe%40example.com&apikey=123-abc-123-abc")
       end
     end
   end
