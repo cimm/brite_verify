@@ -21,8 +21,9 @@ module BriteVerify
       uri                   = verification_uri(address)
       http                  = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl          = true
-      http.read_timeout     = ENV.fetch("BRITEVERIFY_READ_TIMEOUT", 60).to_i
       http.continue_timeout = ENV.fetch("BRITEVERIFY_CONTINUE_TIMEOUT", 60).to_i
+      http.open_timeout     = ENV.fetch("BRITEVERIFY_OPEN_TIMEOUT", 60).to_i
+      http.read_timeout     = ENV.fetch("BRITEVERIFY_READ_TIMEOUT", 60).to_i
       http.verify_mode      = OpenSSL::SSL::VERIFY_PEER
       request               = Net::HTTP::Get.new(uri.request_uri)
       response              = http.request(request)

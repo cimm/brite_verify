@@ -52,7 +52,7 @@ email.error
  => "Email domain invalid"
 ```
 
-You can skip the API key parameter and specify the `BRITEVERIFY_API_KEY` environment variable for convenience. The connection timeouts can be configured via the `BRITEVERIFY_READ_TIMEOUT` and `BRITEVERIFY_CONTINUE_TIMEOUT` environment variables.
+You can skip the API key parameter and specify the `BRITEVERIFY_API_KEY` environment variable for convenience. The connection timeouts can be configured via the `BRITEVERIFY_CONTINUE_TIMEOUT`, `BRITEVERIFY_CONTINUE_TIMEOUT` and `BRITEVERIFY_READ_TIMEOUT` environment variables.
 
 ## Contributing
 
